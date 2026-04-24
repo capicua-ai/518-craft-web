@@ -71,14 +71,14 @@ Auth is wired but **off by default**. Every route is public until you flip the s
 
 **To turn auth on in a project that was scaffolded from this boilerplate:**
 
-1. Create a Web App in the [Souped dashboard](https://souped.tools). Copy the `client_id`, `client_secret`, and project id.
+1. Create a Web App in the [Souped dashboard](https://souped.app). Copy the `client_id`, `client_secret`, and project id.
 2. Add the redirect URIs in Souped:
    - `http://localhost:3000/api/auth/callback` (dev)
    - `https://yourapp.com/api/auth/callback` (prod)
 3. In `.env.local`:
    ```env
    SOUPED_AUTH_ENABLED=true
-   SOUPED_URL=https://souped.tools
+   SOUPED_URL=https://souped.app
    SOUPED_CLIENT_ID=souped_client_xxx
    SOUPED_CLIENT_SECRET=souped_secret_xxx
    SOUPED_PROJECT_ID=...

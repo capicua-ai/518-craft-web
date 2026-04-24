@@ -55,18 +55,20 @@ export default function Home() {
             env var to turn on login; leave it off to build freely.
           </p>
           <div className="flex flex-wrap gap-3">
-            <Link
-              href="/api/auth/login"
-              className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold transition hover:opacity-90"
-              style={{
-                backgroundColor: "var(--souped-accent)",
-                color: "var(--souped-bg)",
-              }}
-            >
-              Try /api/auth/login
-            </Link>
+            {authEnabled ? (
+              <Link
+                href="/api/auth/login"
+                className="inline-flex h-11 items-center justify-center rounded-full px-5 text-sm font-semibold transition hover:opacity-90"
+                style={{
+                  backgroundColor: "var(--souped-accent)",
+                  color: "var(--souped-bg)",
+                }}
+              >
+                Sign in with Souped
+              </Link>
+            ) : null}
             <a
-              href="https://souped.tools"
+              href="https://souped.app"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-11 items-center justify-center rounded-full border px-5 text-sm font-semibold transition hover:bg-white/5"

@@ -43,15 +43,26 @@ export function PingForm() {
         {isPending ? "Pinging…" : "Ping"}
       </Button>
       {result && (
-        <p
-          className="mt-1 text-sm"
-          style={{
-            color: result.ok ? "var(--souped-accent-warm)" : "#ff6b6b",
-          }}
+        <div
           role="status"
+          aria-live="polite"
+          className="mt-2 rounded-lg border px-3 py-2 text-sm"
+          style={
+            result.ok
+              ? {
+                  borderColor: "rgba(255, 107, 53, 0.35)",
+                  backgroundColor: "rgba(255, 107, 53, 0.1)",
+                  color: "var(--souped-ink)",
+                }
+              : {
+                  borderColor: "rgba(255, 107, 107, 0.4)",
+                  backgroundColor: "rgba(255, 107, 107, 0.12)",
+                  color: "#ffb4b4",
+                }
+          }
         >
           {result.ok ? result.message : result.error}
-        </p>
+        </div>
       )}
     </form>
   );
