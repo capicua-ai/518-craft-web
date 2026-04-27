@@ -67,11 +67,18 @@ All decisions below are fixed. Do not swap them without explicit user approval.
 
 ## Enabling auth
 
-Auth is wired but **off by default**. Every route is public until you flip the switch.
+Auth is wired but **off by default**. The boilerplate ships with the SDK installed, the OAuth route handlers (`/api/auth/[...souped]`), and a proxy that's gated by the `SOUPED_AUTH_ENABLED` flag. Until you flip the switch AND list routes in `config.matcher`, every route is public.
 
-**To turn auth on in a project that was scaffolded from this boilerplate:**
+**Two knobs control auth in this app:**
 
-1. Create a Web App in the [Souped dashboard](https://souped.app). Copy the `client_id`, `client_secret`, and project id.
+1. **`SOUPED_AUTH_ENABLED`** (env var) — turns the proxy on/off entirely.
+2. **`config.matcher` in `src/proxy.ts`** — declares WHICH routes the proxy runs on when it's on. The boilerplate default is an **empty array**, so even with the flag on, nothing is protected until you add routes.
+
+**The recommended path:** don't wire auth by hand. Run the `souped-auth-scaffolder` agent — it adds the Prisma `User` model, the lazy-sync helper, RBAC helpers, login/logout UI, and updates `config.matcher` for the routes you want to protect. See the orchestrator skill (`/souped`) for the full flow.
+
+**If you do want to wire it manually**, here's the minimum:
+
+1. Create a Web App in the [Souped dashboard](https://souped.app). Copy `client_id`, `client_secret`, and the project id.
 2. Add the redirect URIs in Souped:
    - `http://localhost:3000/api/auth/callback` (dev)
    - `https://yourapp.com/api/auth/callback` (prod)
@@ -84,10 +91,15 @@ Auth is wired but **off by default**. Every route is public until you flip the s
    SOUPED_PROJECT_ID=...
    SOUPED_SESSION_SECRET=...   # openssl rand -base64 32
    ```
-4. Restart the dev server. The proxy (`src/proxy.ts`) now enforces auth on every non-static route.
-5. In Vercel, mirror the same env vars for each environment (production, preview).
+4. Edit `src/proxy.ts` and set `config.matcher` to the routes you want behind login. Examples:
+   - **Specific routes:** `matcher: ["/admin/:path*", "/api/admin/:path*"]`
+   - **Everything except static:** `matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"]`
+5. Restart the dev server.
+6. In Vercel, mirror the same env vars for each environment (production, preview).
 
-**How the flag works:** `src/proxy.ts` reads `SOUPED_AUTH_ENABLED` at module load. When `"true"`, it wraps the handler with `withSoupedAuth`. When anything else (or unset), it returns the passthrough handler. No code edits are needed to activate — just env vars.
+**Important — the loop trap:** if you set `SOUPED_AUTH_ENABLED=true` AND a matcher that covers every route, the OAuth callback (`/api/auth/callback`) is itself behind login, and the user ends up in a redirect loop. The boilerplate's matcher already excludes static assets; the OAuth routes are reachable because the proxy lets them through internally. But if you add additional cookie/CSRF checks of your own around `/api/auth/*`, make sure they don't block the login flow. When in doubt, protect specific routes, not everything.
+
+**How the flag works:** `src/proxy.ts` reads `SOUPED_AUTH_ENABLED` at module load. When `"true"`, it wraps the handler with `withSoupedAuth`. When anything else (or unset), it returns the passthrough handler. The proxy only runs on routes listed in `config.matcher` — that's a Next.js constraint, not ours.
 
 **Auth primitives available once enabled:**
 
