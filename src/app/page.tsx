@@ -132,7 +132,7 @@ function Section({
   return (
     <div
       style={{
-        background: "transparent",
+        background: "rgba(13,32,96,0.25)",
         margin: "3px 8px",
         border: `1px solid ${C.cyanDim}`,
         borderRadius: 5,
