@@ -182,7 +182,15 @@ function Btn({ label, primary }: { label: string; primary?: boolean }) {
 }
 
 // ─── Card ─────────────────────────────────────────────────────────────────
-function Card({ title, body, action }: { title: string; body: string; action: string }) {
+function Card({
+  title,
+  body,
+  action,
+}: {
+  title: string;
+  body: string;
+  action: string;
+}) {
   return (
     <div
       style={{
@@ -221,7 +229,35 @@ function Card({ title, body, action }: { title: string; body: string; action: st
   );
 }
 
-// ─── Nav ──────────────────────────────────────────────────────────────────
+// ─── Input placeholder ────────────────────────────────────────────────────
+function Field({ label }: { label: string }) {
+  return (
+    <div style={{ marginBottom: 12 }}>
+      <p
+        style={{
+          fontFamily: "system-ui, -apple-system, sans-serif",
+          fontSize: 12,
+          color: C.dim,
+          marginBottom: 6,
+          margin: 0,
+          marginBottom: 6,
+        }}
+      >
+        {label}
+      </p>
+      <div
+        style={{
+          height: 40,
+          background: C.cyanFaint,
+          border: `1px solid ${C.cyanDim}`,
+          borderRadius: 5,
+        }}
+      />
+    </div>
+  );
+}
+
+// ─── Nav section ──────────────────────────────────────────────────────────
 function NavSection() {
   return (
     <div
@@ -235,12 +271,14 @@ function NavSection() {
     >
       <div
         style={{
+          maxWidth: "100%",
           padding: "14px 28px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
+        {/* Logo placeholder */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div
             style={{
@@ -262,6 +300,8 @@ function NavSection() {
             SOUPED
           </span>
         </div>
+
+        {/* Auth badge */}
         <div
           style={{
             padding: "4px 14px",
@@ -286,7 +326,7 @@ function NavSection() {
   );
 }
 
-// ─── Page content ─────────────────────────────────────────────────────────
+// ─── Page content (shared across devices) ────────────────────────────────
 function PageContent({ device }: { device: Device }) {
   const isMobile = device === "mobile";
   const innerPad = isMobile ? "24px 20px" : "40px 40px";
@@ -295,7 +335,9 @@ function PageContent({ device }: { device: Device }) {
     <div>
       <NavSection />
 
+      {/* HERO */}
       <Section tag="hero" desc="Badge pill. Headline, subheadline, 2 CTAs." pad={innerPad}>
+        {/* Badge pill */}
         <div
           style={{
             display: "inline-flex",
@@ -317,6 +359,8 @@ function PageContent({ device }: { device: Device }) {
             Souped Boilerplate
           </span>
         </div>
+
+        {/* Headline */}
         <h1
           style={{
             fontFamily: "system-ui, -apple-system, sans-serif",
@@ -330,6 +374,8 @@ function PageContent({ device }: { device: Device }) {
         >
           A Next.js starter, pre-seasoned with the Souped stack.
         </h1>
+
+        {/* Subheadline */}
         <p
           style={{
             fontFamily: "system-ui, -apple-system, sans-serif",
@@ -345,12 +391,15 @@ function PageContent({ device }: { device: Device }) {
           TypeScript, Tailwind v4, shadcn/ui, Prisma, and Souped auth — wired and ready.
           Set one env var to turn on login; leave it off to build freely.
         </p>
+
+        {/* CTAs */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
           <Btn label="Sign in with Souped" primary />
           <Btn label="Souped dashboard" />
         </div>
       </Section>
 
+      {/* FEATURE CARDS */}
       <Section
         tag="features"
         desc="2-column card grid. Server action sample + API route sample."
@@ -376,7 +425,12 @@ function PageContent({ device }: { device: Device }) {
         </div>
       </Section>
 
-      <Section tag="quickstart" desc="4-step setup commands. Monospace code block." pad={innerPad}>
+      {/* QUICKSTART */}
+      <Section
+        tag="quickstart"
+        desc="4-step setup commands. Monospace code block."
+        pad={innerPad}
+      >
         <div
           style={{
             background: C.cyanFaint,
@@ -397,37 +451,41 @@ function PageContent({ device }: { device: Device }) {
           >
             Quickstart
           </div>
-          {["pnpm install", "cp .env.example .env.local", "pnpm prisma migrate dev", "pnpm dev"].map(
-            (line) => (
-              <div
-                key={line}
-                style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}
+          {[
+            "pnpm install",
+            "cp .env.example .env.local",
+            "pnpm prisma migrate dev",
+            "pnpm dev",
+          ].map((line) => (
+            <div
+              key={line}
+              style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}
+            >
+              <span
+                style={{
+                  fontFamily: '"JetBrains Mono", "Courier New", monospace',
+                  fontSize: 11,
+                  color: C.cyan,
+                  opacity: 0.5,
+                }}
               >
-                <span
-                  style={{
-                    fontFamily: '"JetBrains Mono", "Courier New", monospace',
-                    fontSize: 11,
-                    color: C.cyan,
-                    opacity: 0.5,
-                  }}
-                >
-                  $
-                </span>
-                <span
-                  style={{
-                    fontFamily: '"JetBrains Mono", "Courier New", monospace',
-                    fontSize: 11,
-                    color: "rgba(255,255,255,0.65)",
-                  }}
-                >
-                  {line}
-                </span>
-              </div>
-            )
-          )}
+                $
+              </span>
+              <span
+                style={{
+                  fontFamily: '"JetBrains Mono", "Courier New", monospace',
+                  fontSize: 11,
+                  color: "rgba(255,255,255,0.65)",
+                }}
+              >
+                {line}
+              </span>
+            </div>
+          ))}
         </div>
       </Section>
 
+      {/* FOOTER */}
       <div
         style={{
           margin: "3px 8px",
@@ -451,7 +509,13 @@ function PageContent({ device }: { device: Device }) {
 }
 
 // ─── Top banner ───────────────────────────────────────────────────────────
-function TopBanner({ device, setDevice }: { device: Device; setDevice: (d: Device) => void }) {
+function TopBanner({
+  device,
+  setDevice,
+}: {
+  device: Device;
+  setDevice: (d: Device) => void;
+}) {
   return (
     <div
       style={{
@@ -467,6 +531,7 @@ function TopBanner({ device, setDevice }: { device: Device; setDevice: (d: Devic
         gap: 10,
       }}
     >
+      {/* Left */}
       <div style={{ display: "flex", alignItems: "center", gap: 12, overflow: "hidden" }}>
         <span
           style={{
@@ -509,6 +574,8 @@ function TopBanner({ device, setDevice }: { device: Device; setDevice: (d: Devic
           </span>
         ))}
       </div>
+
+      {/* Device switcher */}
       <div
         style={{
           display: "flex",
@@ -546,14 +613,9 @@ function TopBanner({ device, setDevice }: { device: Device; setDevice: (d: Devic
   );
 }
 
-// ─── Home page ────────────────────────────────────────────────────────────
-export default function Home() {
+// ─── Main page ────────────────────────────────────────────────────────────
+export default function WireframePage() {
   const [device, setDevice] = useState<Device>("desktop");
-
-  const isDesktop = device === "desktop";
-  const frameWidth = isDesktop ? 1100 : device === "tablet" ? 768 : 390;
-  const frameRadius = isDesktop ? 0 : device === "mobile" ? 44 : 20;
-  const statusBarH = device === "mobile" ? 44 : device === "tablet" ? 32 : 0;
 
   return (
     <div
@@ -566,47 +628,46 @@ export default function Home() {
     >
       <TopBanner device={device} setDevice={setDevice} />
 
-      {/* Centering wrapper */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          padding: isDesktop ? "16px 0 60px" : "40px 24px 60px",
-          transition: "padding 0.4s cubic-bezier(0.4,0,0.2,1)",
-        }}
-      >
-        {/* Animated device frame */}
+      {device === "desktop" ? (
+        /* ── Desktop: full-width canvas ── */
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "16px 0 60px" }}>
+          <PageContent device="desktop" />
+        </div>
+      ) : (
+        /* ── Tablet / Mobile: device frame ── */
         <div
           style={{
-            width: frameWidth,
-            flexShrink: 0,
-            borderRadius: frameRadius,
-            overflow: "hidden",
-            border: isDesktop ? "2px solid transparent" : "2px solid rgba(140,190,255,0.4)",
-            boxShadow: isDesktop
-              ? "none"
-              : "0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.1)",
             backgroundColor: C.pageBg,
-            transition: [
-              "width 0.4s cubic-bezier(0.4,0,0.2,1)",
-              "border-radius 0.4s cubic-bezier(0.4,0,0.2,1)",
-              "border-color 0.4s cubic-bezier(0.4,0,0.2,1)",
-              "box-shadow 0.4s cubic-bezier(0.4,0,0.2,1)",
-            ].join(", "),
+            backgroundImage: GRID_IMAGE,
+            backgroundSize: GRID_SIZE,
+            minHeight: "calc(100vh - 44px)",
+            display: "flex",
+            justifyContent: "center",
+            padding: "40px 24px 60px",
           }}
         >
-          {/* Status bar — animates height */}
           <div
             style={{
-              background: C.statusBar,
-              height: statusBarH,
+              width: device === "tablet" ? 768 : 390,
+              flexShrink: 0,
+              borderRadius: device === "mobile" ? 44 : 20,
               overflow: "hidden",
-              transition: "height 0.4s cubic-bezier(0.4,0,0.2,1)",
+              border: "2px solid rgba(140,190,255,0.4)",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.1)",
+              backgroundColor: C.pageBg,
             }}
-          />
-          <PageContent device={device} />
+          >
+            {/* Status bar */}
+            <div
+              style={{
+                background: C.statusBar,
+                height: device === "mobile" ? 44 : 32,
+              }}
+            />
+            <PageContent device={device} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
