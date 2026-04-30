@@ -76,7 +76,7 @@ function Btn({ label, primary }: { label: string; primary?: boolean }) {
 function Card({ title, body, action }: { title: string; body: string; action: string }) {
   return (
     <div className="bp-card p-5">
-      <p className="text-base font-semibold text-white mb-2">{title}</p>
+      <p className="text-lg font-bold text-white mb-2">{title}</p>
       <p className="text-sm text-white/55 leading-relaxed mb-5">{body}</p>
       <Btn label={action} />
     </div>
@@ -146,13 +146,13 @@ function PageContent({ device }: { device: Device }) {
       >
         <div className={`grid gap-4 ${isMobile ? "grid-cols-1" : "grid-cols-2"}`}>
           <Card
-            title="Sample server action"
-            body="Type a name, submit, and a zod-validated server action replies. Copy the pattern from src/actions/ping.ts."
+            title="Server actions, ready to go"
+            body="Zod-validated, typed end-to-end. Drop your logic into src/actions/ and ship."
             action="Try it"
           />
           <Card
-            title="Sample API route"
-            body="A tiny GET handler at /api/health returns JSON. Source at src/app/api/health/route.ts."
+            title="API routes, zero setup"
+            body="A /api/health endpoint ships out of the box. Add yours in src/app/api/."
             action="Open /api/health"
           />
         </div>
