@@ -201,7 +201,7 @@ function TopBanner({ device, setDevice }: { device: Device; setDevice: (d: Devic
           <button
             key={d}
             onClick={() => setDevice(d)}
-            className="font-mono text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-sm border-none cursor-pointer transition-all duration-150"
+            className="font-mono text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-[3px] border-none cursor-pointer transition-all duration-150"
             style={{
               background: device === d ? "var(--bp-orange)" : "transparent",
               color: device === d ? "#ffffff" : "rgba(255,255,255,0.4)",
