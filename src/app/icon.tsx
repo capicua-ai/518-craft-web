@@ -14,17 +14,17 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          borderRadius: "50%",
-          border: "1px solid rgba(196,83,26,0.5)",
+          borderRadius: 4,
+          outline: "1.5px solid rgba(196,83,26,0.55)",
         }}
       >
         <span
           style={{
             fontFamily: "sans-serif",
             fontWeight: 900,
-            fontSize: 10,
-            letterSpacing: "0.05em",
-            color: "#C4531A",
+            fontSize: 13,
+            letterSpacing: "0.04em",
+            color: "#EDE5D0",
             lineHeight: 1,
           }}
         >
