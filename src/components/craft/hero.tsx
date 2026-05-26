@@ -73,7 +73,7 @@ export function Hero() {
         style={{
           background: [
             "linear-gradient(to right, rgba(13,10,7,0.97) 0%, rgba(13,10,7,0.90) 28%, rgba(13,10,7,0.55) 52%, rgba(13,10,7,0.18) 70%, rgba(13,10,7,0.05) 100%)",
-            "linear-gradient(to top, rgba(13,10,7,0.88) 0%, transparent 32%)",
+            "linear-gradient(to top, rgba(13,10,7,0.95) 0%, rgba(13,10,7,0.6) 28%, transparent 50%)",
             "linear-gradient(to bottom, rgba(13,10,7,0.75) 0%, transparent 22%)",
           ].join(", "),
         }}
@@ -84,11 +84,11 @@ export function Hero() {
 
         {/* TEXT COLUMN */}
         <div
-          className="flex flex-col justify-between pt-24 md:pt-28 pb-12 md:pb-14 relative z-10 md:flex-[0_0_48%]"
+          className="flex flex-col justify-end md:justify-between pt-24 md:pt-28 pb-16 md:pb-14 relative z-10 w-full md:flex-[0_0_48%]"
           style={{ paddingLeft: "var(--px)", paddingRight: "var(--px)" }}
         >
-          {/* Eyebrow */}
-          <div className="hero-blur-in hero-blur-d5 flex items-center gap-4">
+          {/* Eyebrow — desktop: floats at top via justify-between */}
+          <div className="hero-blur-in hero-blur-d5 hidden md:flex items-center gap-4">
             <div className="w-6 h-px" style={{ background: "var(--craft-orange)" }} aria-hidden="true" />
             <p className="text-[11px] tracking-[0.45em] uppercase" style={{ color: "var(--craft-muted)" }}>
               Troy · New York · 518
@@ -97,13 +97,21 @@ export function Hero() {
 
           {/* Headline */}
           <div>
+            {/* Eyebrow — mobile: sits just above headline */}
+            <div className="hero-blur-in hero-blur-d5 flex md:hidden items-center gap-4 mb-6">
+              <div className="w-6 h-px" style={{ background: "var(--craft-orange)" }} aria-hidden="true" />
+              <p className="text-[11px] tracking-[0.45em] uppercase" style={{ color: "var(--craft-muted)" }}>
+                Troy · New York · 518
+              </p>
+            </div>
+
             <p className="hero-blur-in hero-blur-d5 text-[11px] tracking-[0.4em] uppercase mb-5" style={{ color: "var(--craft-orange)" }}>
               Independent Craft Brewery
             </p>
             <h1
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(3rem, 10vw, 10rem)",
+                fontSize: "clamp(3rem, 18vw, 10rem)",
                 color: "var(--craft-cream)",
                 lineHeight: 0.88,
                 letterSpacing: "var(--track-display)",

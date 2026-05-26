@@ -213,15 +213,15 @@ export function BeerLineup() {
           style={{ minHeight: "100vh" }}
         >
           {/* Product photo — FMAP */}
-          <div className="relative flex items-center justify-center min-h-[70vw] md:min-h-0 overflow-hidden">
+          <div className="relative flex items-center justify-center min-h-[90vw] md:min-h-0 overflow-hidden">
             <div ref={fmapCanWrapRef}>
               <div ref={fmapParallaxRef} style={{ willChange: "transform" }}>
                 <Image
                   src="/pilsner_can_alone.png"
                   alt="Farmers Market After Party Pilsner"
-                  width={800}
-                  height={1200}
-                  className="h-[82vh] w-auto float-can"
+                  width={1536}
+                  height={1024}
+                  className="h-[140vw] w-auto md:h-[82vh] float-can"
                 />
               </div>
             </div>
@@ -396,7 +396,7 @@ export function BeerLineup() {
           </div>
 
           {/* Product photo — TNO */}
-          <div className="relative flex items-center justify-center min-h-[70vw] md:min-h-0 overflow-hidden">
+          <div className="relative flex items-center justify-center min-h-[90vw] md:min-h-0 overflow-hidden">
             <div ref={tnoCanWrapRef}>
               <div ref={tnoParallaxRef} style={{ willChange: "transform" }}>
                 <Image
@@ -404,7 +404,7 @@ export function BeerLineup() {
                   alt="Troy Night Out Hazy IPA"
                   width={800}
                   height={1200}
-                  className="h-[82vh] w-auto float-can-delayed"
+                  className="h-[90vw] w-auto md:h-[82vh] float-can-delayed"
                 />
               </div>
             </div>
