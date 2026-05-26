@@ -40,6 +40,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# claude / skill gate
+.claude/
+.gate-manifest.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

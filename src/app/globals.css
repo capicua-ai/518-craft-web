@@ -2,61 +2,93 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ── 518 Craft — design tokens ───────────────────────────────────────── */
+:root {
+  --craft-black:    #0D0A07;
+  --craft-charcoal: #181410;
+  --craft-surface:  #201A12;
+  --craft-border:   #2E2419;
+  --craft-orange:   #CC561C;
+  --craft-amber:    #C87820;
+  --craft-tungsten: #E09830;
+  --craft-cream:    #EDE5D0;
+  --craft-paper:    #E5D8BE;
+  --craft-muted:    #908478;
+  --craft-olive:    #4A5030;
+  --craft-purple:   #2A1535;
+
+  --px: clamp(1.75rem, 4vw, 3rem);
+
+  /* ── Motion tokens ── */
+  --motion-ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+  --motion-ease-ui:   cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-dur-fast:  0.22s;
+  --motion-dur-base:  0.55s;
+  --motion-dur-slow:  0.90s;
+
+  /* ── Dark Elegance tracking tokens ── */
+  --track-display: -0.02em;   /* large headlines — tighten */
+  --track-label:    0.12em;   /* uppercase labels — open */
+  --track-body:     0.01em;   /* body on dark — slightly open */
+
+  /* ── Glow tokens (orange accent) ── */
+  --craft-glow:    rgba(196, 83, 26, 0.15);
+  --craft-glow-hi: rgba(196, 83, 26, 0.30);
+}
+
+/* ── Tailwind bridge ──────────────────────────────────────────────────── */
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Blueprint colors → Tailwind utilities (bg-bp-*, text-bp-*, border-bp-*) */
-  --color-bp-page:     var(--bp-page);
-  --color-bp-navy:     var(--bp-navy);
-  --color-bp-navy-mid: var(--bp-navy-mid);
-  --color-bp-nav:      var(--bp-nav);
-  --color-bp-status:   var(--bp-status);
-  --color-bp-cyan:     var(--bp-cyan);
-  --color-bp-orange:   var(--bp-orange);
+  --color-craft-black:    var(--craft-black);
+  --color-craft-charcoal: var(--craft-charcoal);
+  --color-craft-surface:  var(--craft-surface);
+  --color-craft-border:   var(--craft-border);
+  --color-craft-orange:   var(--craft-orange);
+  --color-craft-amber:    var(--craft-amber);
+  --color-craft-tungsten: var(--craft-tungsten);
+  --color-craft-cream:    var(--craft-cream);
+  --color-craft-paper:    var(--craft-paper);
+  --color-craft-muted:    var(--craft-muted);
+  --color-craft-olive:    var(--craft-olive);
+  --color-craft-purple:   var(--craft-purple);
+  --font-display: var(--font-display);
+  --font-sans:    var(--font-sans);
+  --font-mono:    var(--font-geist-mono);
 
+  /* shadcn tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-bp-page: var(--bp-page);
+  --color-bp-navy: var(--bp-navy);
+  --color-bp-cyan: var(--bp-cyan);
+  --color-bp-orange: var(--bp-orange);
 }
 
+/* ── shadcn base tokens ───────────────────────────────────────────────── */
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -76,11 +108,6 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -90,67 +117,294 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --bp-page:   #00214d;
+  --bp-navy:   #0d2060;
+  --bp-nav:    #002b63;
+  --bp-status: #002255;
+  --bp-cyan:   #7ec8e3;
+  --bp-orange: #FF6B35;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+/* ── Grain texture ────────────────────────────────────────────────────── */
+@keyframes grain {
+  0%   { transform: translate(0, 0) }
+  14%  { transform: translate(-3%, -5%) }
+  28%  { transform: translate(5%,  3%) }
+  42%  { transform: translate(-4%,  6%) }
+  57%  { transform: translate(6%, -4%) }
+  71%  { transform: translate(-5%,  3%) }
+  85%  { transform: translate(3%, -6%) }
+  100% { transform: translate(0, 0) }
 }
 
-/* Souped brand tokens — use these for landing / marketing surfaces.
-   For app-shell UI, prefer the shadcn tokens above (--primary, --background, etc.). */
-:root {
-  --souped-bg: #080025;
-  --souped-bg-elevated: #1c1c38;
-  --souped-bg-subtle: #16163a;
-  --souped-ink: #fff8f0;
-  --souped-accent: #ff6b35;
-  --souped-accent-alt: #ff6600;
-  --souped-accent-warm: #ffbb33;
-  --souped-accent-blue: #3314dc;
-
-  /* Blueprint wireframe tokens */
-  --bp-page:      #00214d;
-  --bp-navy:      #0d2060;
-  --bp-navy-mid:  #142878;
-  --bp-nav:       #002b63;
-  --bp-status:    #002255;
-  --bp-cyan:      #7ec8e3;
-  --bp-orange:    #FF6B35;
+.grain-texture {
+  position: fixed;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  pointer-events: none;
+  z-index: 998;
+  opacity: 0.12;
+  animation: grain 10s steps(8) infinite;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ── Blueprint utility classes ─────────────────────────────────────────────
-   Use these on any page — no need to re-declare colors or patterns.        */
+/* ── Reduced motion override (WCAG 2.5.3) ────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .reveal-blur, .reveal-stamp, .reveal-instant,
+  .reveal-glow-build, .reveal-scale, .reveal-left, .reveal-right, .reveal-glow {
+    opacity: 0;
+    transform: none !important;
+    filter: none !important;
+  }
+  .reveal.visible, .reveal-blur.visible, .reveal-stamp.visible,
+  .reveal-instant.visible, .reveal-glow-build.visible,
+  .reveal-scale.visible, .reveal-left.visible,
+  .reveal-right.visible, .reveal-glow.visible { opacity: 1; }
+  .hero-blur-in  { animation: none; opacity: 1; filter: none; transform: none; }
+  .hero-img-reveal { animation: none; opacity: 1; filter: none; }
+}
 
+/* ── Scroll reveal ────────────────────────────────────────────────────── */
+
+/* Default: rise from below */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--motion-dur-slow) var(--motion-ease-out),
+              transform var(--motion-dur-slow) var(--motion-ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Scale up from 94% — for cards and image panels */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity var(--motion-dur-base) var(--motion-ease-out),
+              transform var(--motion-dur-base) var(--motion-ease-out);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* Slide from left — for labels, eyebrows */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity var(--motion-dur-base) var(--motion-ease-out),
+              transform var(--motion-dur-base) var(--motion-ease-out);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+/* Slide from right — for secondary elements */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity var(--motion-dur-base) var(--motion-ease-out),
+              transform var(--motion-dur-base) var(--motion-ease-out);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* Delay utilities */
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.32s; }
+.reveal-d4 { transition-delay: 0.46s; }
+
+/* ── CTA variants ─────────────────────────────────────────────────────── */
+.craft-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--craft-orange);
+  color: var(--craft-black);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  transition: transform var(--motion-dur-fast) var(--motion-ease-ui),
+              box-shadow var(--motion-dur-fast) var(--motion-ease-ui);
+}
+.craft-cta:hover {
+  transform: translateY(-2px) scale(1.025);
+  box-shadow: 0 0 28px var(--craft-glow-hi), 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+.craft-cta:active {
+  transform: scale(0.97);
+  transition-duration: 0.08s;
+  box-shadow: 0 0 12px var(--craft-glow);
+}
+.craft-cta:focus-visible {
+  outline: 2px solid var(--craft-orange);
+  outline-offset: 3px;
+}
+
+.craft-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--craft-cream);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid rgba(237,229,208,0.25);
+  transition: border-color var(--motion-dur-fast) var(--motion-ease-ui),
+              color var(--motion-dur-fast) var(--motion-ease-ui),
+              transform var(--motion-dur-fast) var(--motion-ease-ui),
+              box-shadow var(--motion-dur-fast) var(--motion-ease-ui);
+}
+.craft-cta-ghost:hover {
+  border-color: var(--craft-orange);
+  color: var(--craft-orange);
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px var(--craft-glow), inset 0 0 20px rgba(196, 83, 26, 0.06);
+}
+.craft-cta-ghost:active {
+  transform: scale(0.97);
+  transition-duration: 0.08s;
+}
+.craft-cta-ghost:focus-visible {
+  outline: 2px solid var(--craft-orange);
+  outline-offset: 3px;
+}
+
+/* ── Section label ────────────────────────────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+.section-label span {
+  font-size: 10px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--craft-orange);
+}
+.section-label-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--craft-border);
+}
+
+/* ── Dark Elegance glow utilities ────────────────────────────────────── */
+/* One glowing element per viewport — applied to the signature moment only */
+.glow-text {
+  text-shadow:
+    0 0 40px var(--craft-glow-hi),
+    0 0 80px var(--craft-glow),
+    0 0 160px rgba(196, 83, 26, 0.10);
+}
+
+/* Luminous reveal — emerges with brightness instead of a translate */
+.reveal-glow {
+  opacity: 0;
+  filter: brightness(0.35);
+  transition: opacity var(--motion-dur-slow) var(--motion-ease-out),
+              filter var(--motion-dur-slow) var(--motion-ease-out);
+}
+.reveal-glow.visible { opacity: 1; filter: brightness(1); }
+
+/* Stamp reveal — scale from 0.88, no movement (brand wordmarks) */
+.reveal-stamp {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.65s var(--motion-ease-out),
+              transform 0.65s var(--motion-ease-out);
+}
+.reveal-stamp.visible { opacity: 1; transform: scale(1); }
+
+/* Instant reveal — opacity only, fast (direct commands like "COME IN.") */
+.reveal-instant {
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+.reveal-instant.visible { opacity: 1; }
+
+/* Glow build — dims then brightens into glow (finale headlines) */
+.reveal-glow-build {
+  opacity: 0;
+  filter: brightness(0.15);
+  transition: opacity 1.3s var(--motion-ease-out),
+              filter 1.3s var(--motion-ease-out);
+}
+.reveal-glow-build.visible { opacity: 1; filter: brightness(1); }
+
+/* Blur-to-sharp — scroll-triggered (for section titles) */
+.reveal-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(14px);
+  transition:
+    opacity  var(--motion-dur-slow) var(--motion-ease-out),
+    filter   var(--motion-dur-slow) var(--motion-ease-out),
+    transform var(--motion-dur-slow) var(--motion-ease-out);
+}
+.reveal-blur.visible { opacity: 1; filter: blur(0px); transform: translateY(0); }
+
+/* Blur-to-sharp — CSS keyframe (for hero, always above the fold) */
+@keyframes blurIn {
+  from { opacity: 0; filter: blur(12px); transform: translateY(18px); }
+  to   { opacity: 1; filter: blur(0px);  transform: translateY(0);   }
+}
+.hero-blur-in {
+  animation: blurIn var(--motion-dur-slow) var(--motion-ease-out) both;
+}
+
+/* Blur-to-sharp — hero background image (no translate, parallax handles position) */
+@keyframes heroImgReveal {
+  from { opacity: 0; filter: blur(40px) saturate(0.6); }
+  to   { opacity: 1; filter: blur(0px)  saturate(1);   }
+}
+.hero-img-reveal {
+  animation: heroImgReveal 1.8s var(--motion-ease-out) both;
+  animation-delay: 0.05s;
+}
+.hero-blur-d0 { animation-delay: 0.05s; }
+.hero-blur-d1 { animation-delay: 0.15s; }
+.hero-blur-d2 { animation-delay: 0.32s; }
+.hero-blur-d3 { animation-delay: 0.50s; }
+.hero-blur-d4 { animation-delay: 0.70s; }
+.hero-blur-d5 { animation-delay: 0.88s; }
+.hero-blur-d6 { animation-delay: 1.05s; }
+
+/* ── Floating product animation ─────────────────────────────────────── */
+@keyframes float {
+  0%   { transform: translateY(0px)   rotate(-1deg)   scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
+  50%  { transform: translateY(-22px) rotate(1.5deg)  scale(1.025); filter: drop-shadow(0px 44px 52px rgba(0,0,0,0.20)); }
+  100% { transform: translateY(0px)   rotate(-1deg)   scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
+}
+@keyframes floatB {
+  0%   { transform: translateY(0px)   rotate(1deg)    scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
+  50%  { transform: translateY(-22px) rotate(-1.5deg) scale(1.025); filter: drop-shadow(0px 44px 52px rgba(0,0,0,0.20)); }
+  100% { transform: translateY(0px)   rotate(1deg)    scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
+}
+.float-can {
+  animation: float 4.8s ease-in-out infinite;
+}
+.float-can-delayed {
+  animation: floatB 4.8s ease-in-out infinite;
+  animation-delay: -2.4s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .float-can, .float-can-delayed { animation: none; }
+}
+
+/* ── Scroll indicator pulse ──────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+/* ── Blueprint wireframe ─────────────────────────────────────────────── */
 .bp-grid {
   background-color: var(--bp-page);
   background-image:
@@ -160,68 +414,16 @@
     linear-gradient(90deg, rgba(100,160,255,0.05) 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
 }
-
-.bp-banner {
-  background: linear-gradient(to right, #080025 30%, var(--bp-orange) 100%);
-  border-bottom: 1px solid rgba(255,107,53,0.15);
-}
-
-.bp-label-bar {
-  background: rgba(126,200,227,0.06);
-  border-bottom: 1px solid rgba(126,200,227,0.30);
-}
-
-.bp-section {
-  background: rgba(13,32,96,0.25);
-  border: 1px solid rgba(126,200,227,0.30);
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 3px 8px;
-}
-
-.bp-card {
-  background: rgba(126,200,227,0.10);
-  border: 1px solid rgba(126,200,227,0.30);
-  border-radius: 6px;
-}
-
-.bp-code-block {
-  background: rgba(126,200,227,0.10);
-  border: 1px solid rgba(126,200,227,0.30);
-  border-radius: 6px;
-}
-
-.bp-tag {
-  background: rgba(126,200,227,0.12);
-  border: 1px solid rgba(126,200,227,0.30);
-  border-radius: 3px;
-}
-
-.bp-btn-primary {
-  background: var(--bp-cyan);
-  color: var(--bp-navy);
-  border-radius: 4px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  cursor: default;
-}
-
-.bp-btn-secondary {
-  background: transparent;
-  border: 1.5px solid rgba(126,200,227,0.30);
-  color: var(--bp-cyan);
-  border-radius: 4px;
-  cursor: default;
-}
+.bp-banner { background: linear-gradient(to right, #080025 30%, var(--bp-orange) 100%); border-bottom: 1px solid rgba(255,107,53,0.15); }
+.bp-label-bar { background: rgba(126,200,227,0.06); border-bottom: 1px solid rgba(126,200,227,0.30); }
+.bp-section { background: rgba(13,32,96,0.25); border: 1px solid rgba(126,200,227,0.30); border-radius: 5px; overflow: hidden; margin: 3px 8px; }
+.bp-card { background: rgba(126,200,227,0.10); border: 1px solid rgba(126,200,227,0.30); border-radius: 6px; }
+.bp-tag { background: rgba(126,200,227,0.12); border: 1px solid rgba(126,200,227,0.30); border-radius: 3px; }
+.bp-btn-primary { background: var(--bp-cyan); color: #0d2060; border-radius: 4px; font-weight: 700; letter-spacing: 0.03em; }
+.bp-btn-secondary { background: transparent; border: 1.5px solid rgba(126,200,227,0.30); color: var(--bp-cyan); border-radius: 4px; }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; background-color: var(--craft-black); }
+  html { @apply font-sans; }
 }

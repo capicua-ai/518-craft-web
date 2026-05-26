@@ -1,0 +1,49 @@
+{
+  "name": "518 Craft Brewery",
+  "slug": "518-craft",
+  "direction": "Dark Elegance",
+
+  "tokens": {
+    "colors": {
+      "black":    "#0D0A07",
+      "charcoal": "#181410",
+      "surface":  "#201A12",
+      "border":   "#2E2419",
+      "orange":   "#C4531A",
+      "amber":    "#C87820",
+      "tungsten": "#E09830",
+      "cream":    "#EDE5D0",
+      "paper":    "#E5D8BE",
+      "muted":    "#7A6E62",
+      "olive":    "#4A5030",
+      "purple":   "#2A1535"
+    },
+    "typography": {
+      "display": "Bebas Neue",
+      "body":    "DM Sans"
+    }
+  },
+
+  "icons": {
+    "library":  "@phosphor-icons/react",
+    "weight":   "light",
+    "size":     { "inline": 16, "default": 24, "display": 48 },
+    "approved": []
+  },
+
+  "assets": {
+    "favicon": {
+      "bg":      "#0D0A07",
+      "accent":  "#C4531A",
+      "char":    "518",
+      "size":    32
+    },
+    "og": {
+      "width":   1200,
+      "height":  630,
+      "bg":      "#0D0A07",
+      "accent":  "#C4531A",
+      "headline": "Crafted for Troy Nights."
+    }
+  }
+}
