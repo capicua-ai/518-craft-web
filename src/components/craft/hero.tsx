@@ -109,9 +109,9 @@ export function Hero() {
               Independent Craft Brewery
             </p>
             <h1
+              className="text-[clamp(3rem,18vw,10rem)] md:text-[clamp(3rem,10vw,10rem)]"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(3rem, 18vw, 10rem)",
                 color: "var(--craft-cream)",
                 lineHeight: 0.88,
                 letterSpacing: "var(--track-display)",
