@@ -20,6 +20,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@fontsource/bebas-neue": "^5.2.7",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@souped-tools/auth-nextjs": "^0.2.0",
