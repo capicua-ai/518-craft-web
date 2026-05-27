@@ -29,6 +29,7 @@ export function Hero() {
           start: "top top",
           end: "bottom top",
           scrub: 1.8,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -54,7 +55,7 @@ export function Hero() {
         ref={bgRef}
         aria-hidden="true"
         className="absolute pointer-events-none"
-        style={{ inset: "-7% 0 0", willChange: "transform" }}
+        style={{ inset: "-80px 0 0", willChange: "transform" }}
       >
         <Image
           src="/hero-v4.png"
