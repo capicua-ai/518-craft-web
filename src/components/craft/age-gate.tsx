@@ -138,7 +138,7 @@ export function AgeGate() {
 
         {/* Legal fine print */}
         <p
-          className="text-[10px] tracking-[0.3em] uppercase"
+          className="text-xs tracking-[0.3em] uppercase"
           style={{ color: "var(--craft-muted)" }}
         >
           Drink local. Drink smart.

@@ -99,12 +99,12 @@ export function Story() {
 
       {/* Section label — divider extends to viewport edge */}
       <div className="relative z-10 reveal flex items-center gap-5 mb-16">
-        <span
+        <h2
           className="text-[11px] tracking-[0.4em] uppercase"
           style={{ color: "var(--craft-orange)" }}
         >
           The Story
-        </span>
+        </h2>
         <div
           className="flex-1 h-px"
           style={{ background: "var(--craft-border)" }}

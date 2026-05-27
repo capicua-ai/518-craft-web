@@ -204,7 +204,7 @@ export function FindUs() {
                   </div>
                 ) : (
                   <p
-                    className="text-[10px] tracking-widest uppercase"
+                    className="text-xs tracking-widest uppercase"
                     style={{ color: "var(--craft-muted)" }}
                   >
                     {sub}

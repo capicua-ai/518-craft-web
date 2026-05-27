@@ -226,7 +226,7 @@
   font-size: 1rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 0.85rem 1.75rem;
+  padding: 0.9rem 1.75rem;
   transition: transform var(--motion-dur-fast) var(--motion-ease-ui),
               box-shadow var(--motion-dur-fast) var(--motion-ease-ui);
 }
@@ -254,7 +254,7 @@
   font-size: 1rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 0.85rem 1.75rem;
+  padding: 0.9rem 1.75rem;
   border: 1px solid rgba(237,229,208,0.25);
   transition: border-color var(--motion-dur-fast) var(--motion-ease-ui),
               color var(--motion-dur-fast) var(--motion-ease-ui),

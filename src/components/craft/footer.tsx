@@ -77,6 +77,7 @@ export function Footer() {
               href="https://instagram.com/518craft"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram (opens in new tab)"
               className="text-xs tracking-[0.25em] uppercase text-craft-muted hover:text-craft-cream transition-colors duration-200"
             >
               Instagram
@@ -85,6 +86,7 @@ export function Footer() {
               href="https://facebook.com/518Craft"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Facebook (opens in new tab)"
               className="text-xs tracking-[0.25em] uppercase text-craft-muted hover:text-craft-cream transition-colors duration-200"
             >
               Facebook
@@ -102,10 +104,10 @@ export function Footer() {
           borderTop: "1px solid var(--craft-border)",
         }}
       >
-        <p className="text-craft-muted text-[10px] tracking-[0.4em] uppercase">
+        <p className="text-craft-muted text-xs tracking-[0.4em] uppercase">
           Est. 518 · Collar City · Troy, NY
         </p>
-        <p className="text-craft-muted text-[10px] tracking-[0.4em] uppercase">
+        <p className="text-craft-muted text-xs tracking-[0.4em] uppercase">
           © {new Date().getFullYear()} 518 Craft Brewing. All rights reserved.
         </p>
       </div>

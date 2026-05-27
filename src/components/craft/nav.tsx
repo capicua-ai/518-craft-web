@@ -10,8 +10,9 @@ const NAV_LINKS = [
 ];
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen]         = useState(false);
+  const [scrolled, setScrolled]         = useState(false);
+  const [open, setOpen]                 = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const menuRef      = useRef<HTMLDivElement>(null);
@@ -21,6 +22,24 @@ export function Nav() {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: track which section is in view
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map(({ href }) => href.replace("#", ""));
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
   }, []);
 
   // Close on resize to desktop
@@ -107,16 +126,20 @@ export function Nav() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="text-xs tracking-[0.35em] uppercase transition-colors duration-200 hover:text-craft-cream"
-              style={{ color: "var(--craft-muted)" }}
-            >
-              {label}
-            </a>
-          ))}
+          {NAV_LINKS.map(({ label, href }) => {
+            const isActive = activeSection === href.replace("#", "");
+            return (
+              <a
+                key={label}
+                href={href}
+                aria-current={isActive ? "true" : undefined}
+                className="text-xs tracking-[0.35em] uppercase transition-colors duration-200 hover:text-craft-cream"
+                style={{ color: isActive ? "var(--craft-cream)" : "var(--craft-muted)" }}
+              >
+                {label}
+              </a>
+            );
+          })}
         </div>
 
         {/* Mobile — hamburger */}
@@ -215,7 +238,7 @@ export function Nav() {
 
         {/* Bottom meta */}
         <p
-          className="pb-10 text-center text-[10px] tracking-[0.45em] uppercase"
+          className="pb-10 text-center text-xs tracking-[0.45em] uppercase"
           style={{
             color: "var(--craft-muted)",
             opacity: open ? 0.45 : 0,

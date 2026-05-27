@@ -21,7 +21,7 @@ const TNO_STATS = [
 function useParallax(speed = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; // ✓ fix #1
     let raf: number;
     const update = () => {
       if (!ref.current) return;
@@ -75,6 +75,9 @@ export function BeerLineup() {
   const tnoLine2Ref    = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    // Set initial state via GSAP (keeps text visible when JS hasn't loaded yet)
+    gsap.set([fmapLine1Ref.current, fmapLine2Ref.current, tnoLine1Ref.current, tnoLine2Ref.current], { opacity: 0 });
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       gsap.set([fmapLine1Ref.current, fmapLine2Ref.current, tnoLine1Ref.current, tnoLine2Ref.current], { opacity: 1 });
       return;
@@ -221,6 +224,7 @@ export function BeerLineup() {
                   alt="Farmers Market After Party Pilsner"
                   width={1536}
                   height={1024}
+                  sizes="(max-width: 768px) 210vw, 55vw"
                   className="h-[140vw] w-auto md:h-[82vh] float-can"
                 />
               </div>
@@ -245,8 +249,8 @@ export function BeerLineup() {
                 color: "var(--craft-cream)",
               }}
             >
-              <span ref={fmapLine1Ref} style={{ display: "block", opacity: 0 }}>FARMERS MARKET</span>
-              <span ref={fmapLine2Ref} style={{ display: "block", color: "var(--craft-amber)", opacity: 0 }}>AFTER PARTY</span>
+              <span ref={fmapLine1Ref} style={{ display: "block" }}>FARMERS MARKET</span>
+              <span ref={fmapLine2Ref} style={{ display: "block", color: "var(--craft-amber)" }}>AFTER PARTY</span>
             </h2>
 
             <p className="reveal reveal-d2 leading-relaxed mb-7 max-w-sm" style={{ color: "var(--craft-muted)", fontSize: "1rem" }}>
@@ -352,8 +356,8 @@ export function BeerLineup() {
                 color: "var(--craft-cream)",
               }}
             >
-              <span ref={tnoLine1Ref} style={{ display: "block", opacity: 0 }}>TROY</span>
-              <span ref={tnoLine2Ref} style={{ display: "block", color: "var(--craft-orange)", opacity: 0 }}>NIGHT OUT</span>
+              <span ref={tnoLine1Ref} style={{ display: "block" }}>TROY</span>
+              <span ref={tnoLine2Ref} style={{ display: "block", color: "var(--craft-orange)" }}>NIGHT OUT</span>
             </h2>
 
             <p className="reveal reveal-d2 leading-relaxed mb-7 max-w-sm" style={{ color: "var(--craft-muted)", fontSize: "1rem" }}>
@@ -404,6 +408,7 @@ export function BeerLineup() {
                   alt="Troy Night Out Hazy IPA"
                   width={800}
                   height={1200}
+                  sizes="(max-width: 768px) 60vw, 55vw"
                   className="h-[90vw] w-auto md:h-[82vh] float-can-delayed"
                 />
               </div>
