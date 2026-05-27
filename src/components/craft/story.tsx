@@ -131,32 +131,32 @@ export function Story() {
               aria-hidden="true"
             />
 
-            <p ref={smallRef} className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,6vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-cream)",  letterSpacing: "var(--track-display)", opacity: 0 }}>SMALL</p>
-            <p ref={batchRef} className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,6vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-orange)", letterSpacing: "var(--track-display)", opacity: 0 }}>BATCH.</p>
-            <p ref={realRef}  className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,6vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-cream)",  letterSpacing: "var(--track-display)", opacity: 0 }}>REAL</p>
-            <p ref={localRef} className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,6vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-orange)", letterSpacing: "var(--track-display)", opacity: 0 }}>LOCAL.</p>
+            <p ref={smallRef} className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,8vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-cream)",  letterSpacing: "var(--track-display)", opacity: 0 }}>SMALL</p>
+            <p ref={batchRef} className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,8vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-orange)", letterSpacing: "var(--track-display)", opacity: 0 }}>BATCH.</p>
+            <p ref={realRef}  className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,8vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-cream)",  letterSpacing: "var(--track-display)", opacity: 0 }}>REAL</p>
+            <p ref={localRef} className="leading-[0.86] text-[clamp(2.8rem,16vw,5.5rem)] md:text-[clamp(2.8rem,8vw,5.5rem)]" style={{ fontFamily: "var(--font-display)", color: "var(--craft-orange)", letterSpacing: "var(--track-display)", opacity: 0 }}>LOCAL.</p>
 
             {/* Anchor meta — grounds the left column */}
             <div
-              className="reveal reveal-d4 mt-10 pt-5 flex items-center gap-5"
+              className="reveal reveal-d4 mt-10 pt-5 flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-5"
               style={{ borderTop: "1px solid var(--craft-border)" }}
             >
               <span
-                className="text-[11px] tracking-[0.35em] uppercase"
+                className="text-[11px] tracking-[0.35em] uppercase whitespace-nowrap"
                 style={{ color: "var(--craft-muted)" }}
               >
                 Troy, NY
               </span>
-              <div className="w-px h-3" style={{ background: "var(--craft-border)" }} aria-hidden="true" />
+              <div className="hidden lg:block w-px h-3" style={{ background: "var(--craft-border)" }} aria-hidden="true" />
               <span
-                className="text-[11px] tracking-[0.35em] uppercase"
+                className="text-[11px] tracking-[0.35em] uppercase whitespace-nowrap"
                 style={{ color: "var(--craft-muted)" }}
               >
                 Est. 518
               </span>
-              <div className="w-px h-3" style={{ background: "var(--craft-border)" }} aria-hidden="true" />
+              <div className="hidden lg:block w-px h-3" style={{ background: "var(--craft-border)" }} aria-hidden="true" />
               <span
-                className="text-[11px] tracking-[0.35em] uppercase"
+                className="text-[11px] tracking-[0.35em] uppercase whitespace-nowrap"
                 style={{ color: "var(--craft-muted)" }}
               >
                 Ind. Craft

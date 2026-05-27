@@ -224,8 +224,8 @@ export function BeerLineup() {
                   alt="Farmers Market After Party Pilsner"
                   width={1536}
                   height={1024}
-                  sizes="(max-width: 768px) 210vw, 55vw"
-                  className="h-[140vw] w-auto md:h-[82vh] float-can"
+                  sizes="(max-width: 768px) 135vw, 55vw"
+                  className="h-[90vw] w-auto md:h-[82vh] float-can"
                 />
               </div>
             </div>
@@ -344,7 +344,7 @@ export function BeerLineup() {
             <div className="reveal flex items-center gap-4 mb-10">
               <span style={{ fontFamily: "var(--font-display)", fontSize: "0.8rem", letterSpacing: "0.4em", color: "var(--craft-orange)" }}>02</span>
               <div className="w-8 h-px" style={{ background: "var(--craft-orange)" }} aria-hidden="true" />
-              <span className="text-xs tracking-[0.4em] uppercase" style={{ color: "var(--craft-muted)" }}>Hazy IPA · 6.2% ABV</span>
+              <span className="text-xs tracking-[0.4em] uppercase whitespace-nowrap" style={{ color: "var(--craft-muted)" }}>Hazy IPA · 6.2% ABV</span>
             </div>
 
             <h2
