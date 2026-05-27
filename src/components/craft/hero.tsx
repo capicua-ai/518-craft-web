@@ -118,7 +118,7 @@ export function Hero() {
               }}
             >
               <span ref={craftedRef} style={{ display: "block", opacity: 0 }}>CRAFTED</span>
-              <span ref={forTroyRef} style={{ display: "block", color: "var(--craft-orange)", opacity: 0 }}>FOR TROY</span>
+              <span ref={forTroyRef} className="neon-for-troy" style={{ display: "block", opacity: 0 }}>FOR TROY</span>
               <span ref={nightsRef}  style={{ display: "block", opacity: 0 }}>NIGHTS.</span>
             </h1>
 
