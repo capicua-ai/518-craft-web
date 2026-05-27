@@ -215,6 +215,41 @@
 .reveal-d3 { transition-delay: 0.32s; }
 .reveal-d4 { transition-delay: 0.46s; }
 
+/* ── Nav links ───────────────────────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.22s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--craft-orange);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.26s var(--motion-ease-out);
+}
+.nav-link:hover {
+  color: var(--craft-cream) !important;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+.nav-link[aria-current="true"] {
+  color: var(--craft-cream);
+}
+.nav-link[aria-current="true"]::after {
+  transform: scaleX(1);
+}
+.nav-link:focus-visible {
+  outline: 2px solid var(--craft-orange);
+  outline-offset: 4px;
+}
+
 /* ── CTA variants ─────────────────────────────────────────────────────── */
 .craft-cta {
   display: inline-flex;
@@ -377,26 +412,6 @@
 .hero-blur-d6 { animation-delay: 1.05s; }
 
 /* ── Floating product animation ─────────────────────────────────────── */
-@keyframes float {
-  0%   { transform: translateY(0px)   rotate(-1deg)   scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
-  50%  { transform: translateY(-22px) rotate(1.5deg)  scale(1.025); filter: drop-shadow(0px 44px 52px rgba(0,0,0,0.20)); }
-  100% { transform: translateY(0px)   rotate(-1deg)   scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
-}
-@keyframes floatB {
-  0%   { transform: translateY(0px)   rotate(1deg)    scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
-  50%  { transform: translateY(-22px) rotate(-1.5deg) scale(1.025); filter: drop-shadow(0px 44px 52px rgba(0,0,0,0.20)); }
-  100% { transform: translateY(0px)   rotate(1deg)    scale(1);     filter: drop-shadow(0px 22px 30px rgba(0,0,0,0.55)); }
-}
-.float-can {
-  animation: float 4.8s ease-in-out infinite;
-}
-.float-can-delayed {
-  animation: floatB 4.8s ease-in-out infinite;
-  animation-delay: -2.4s;
-}
-@media (prefers-reduced-motion: reduce) {
-  .float-can, .float-can-delayed { animation: none; }
-}
 
 /* ── Scroll indicator pulse ──────────────────────────────────────────── */
 @keyframes pulse {
@@ -422,31 +437,48 @@
 .bp-btn-primary { background: var(--bp-cyan); color: #0d2060; border-radius: 4px; font-weight: 700; letter-spacing: 0.03em; }
 .bp-btn-secondary { background: transparent; border: 1.5px solid rgba(126,200,227,0.30); color: var(--bp-cyan); border-radius: 4px; }
 
-/* ── Neon sign — FOR TROY ────────────────────────────────────────────── */
-/* Glow = SVG feGaussianBlur filter in hero.tsx (constrains to stroke)    */
-/* Flicker = opacity on .neon-troy-wrap — GSAP owns inner span only       */
-@keyframes neon-sign-flicker {
-  /* Sign turns on → immediate flicker → steady for the rest of the cycle */
-  0%        { opacity: 1; }
-  6%        { opacity: 0.12; }   /* first drop */
-  8%        { opacity: 1; }      /* brief recovery */
-  10%       { opacity: 0.22; }   /* second drop */
-  12%, 100% { opacity: 1; }      /* steady glow */
+/* ── Neon sign — FOR TROY / STAY OUT LATE. ───────────────────────────── */
+/* Glow    = drop-shadow filter with subtle CSS vibration                  */
+/* Flicker = GSAP via src/lib/neon-flicker.ts (opacity-based)             */
+
+@keyframes neon-glow-vibrate {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 2px   rgba(255, 220, 160, 0.95))
+      drop-shadow(0 0 8px   rgba(245, 120,  30, 0.85))
+      drop-shadow(0 0 22px  rgba(200,  75,  15, 0.58))
+      drop-shadow(0 0 45px  rgba(165,  55,  10, 0.28));
+  }
+  38% {
+    filter:
+      drop-shadow(0 0 2.1px rgba(255, 220, 160, 0.96))
+      drop-shadow(0 0 8.5px rgba(245, 120,  30, 0.86))
+      drop-shadow(0 0 23px  rgba(200,  75,  15, 0.59))
+      drop-shadow(0 0 46px  rgba(165,  55,  10, 0.29));
+  }
+  72% {
+    filter:
+      drop-shadow(0 0 1.9px rgba(255, 220, 160, 0.94))
+      drop-shadow(0 0 7.8px rgba(245, 120,  30, 0.84))
+      drop-shadow(0 0 21px  rgba(200,  75,  15, 0.57))
+      drop-shadow(0 0 44px  rgba(165,  55,  10, 0.27));
+  }
 }
 
 .neon-troy-wrap {
   display: block;
-  filter:
-    drop-shadow(0 0 2px  rgba(255, 220, 160, 0.95))
-    drop-shadow(0 0 8px  rgba(245, 120,  30, 0.85))
-    drop-shadow(0 0 22px rgba(200,  75,  15, 0.58))
-    drop-shadow(0 0 45px rgba(165,  55,  10, 0.28));
-  /* delay 2s: GSAP finishes revealing the text (~1.8s) before the flicker fires */
-  animation: neon-sign-flicker 6s ease-in-out 2s infinite;
+  animation: neon-glow-vibrate 0.50s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .neon-troy-wrap { animation: none; }
+  .neon-troy-wrap {
+    animation: none;
+    filter:
+      drop-shadow(0 0 2px  rgba(255, 220, 160, 0.95))
+      drop-shadow(0 0 8px  rgba(245, 120,  30, 0.85))
+      drop-shadow(0 0 22px rgba(200,  75,  15, 0.58))
+      drop-shadow(0 0 45px rgba(165,  55,  10, 0.28));
+  }
 }
 
 @layer base {

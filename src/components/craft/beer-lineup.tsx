@@ -84,27 +84,35 @@ export function BeerLineup() {
     }
 
     const ctx = gsap.context(() => {
-      // ── FMAP can — flies in from below, tilted left ──
-      gsap.from(fmapCanWrapRef.current, {
-        y: 180,
-        rotation: -16,
-        opacity: 0,
-        scale: 0.82,
-        duration: 1.35,
-        ease: "power3.out",
-        scrollTrigger: { trigger: fmapRef.current, start: "top 78%" },
-      });
+      // ── FMAP can — scrubbed entrance, tied to scroll progress ──
+      gsap.fromTo(fmapCanWrapRef.current,
+        { y: 75, rotation: -5, opacity: 0, scale: 0.92 },
+        {
+          y: 0, rotation: 0, opacity: 1, scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: fmapRef.current,
+            start: "top 90%",
+            end: "top 15%",
+            scrub: 1.4,
+          },
+        }
+      );
 
-      // ── TNO can — flies in from below, tilted right ──
-      gsap.from(tnoCanWrapRef.current, {
-        y: 180,
-        rotation: 16,
-        opacity: 0,
-        scale: 0.82,
-        duration: 1.35,
-        ease: "power3.out",
-        scrollTrigger: { trigger: tnoRef.current, start: "top 78%" },
-      });
+      // ── TNO can — scrubbed entrance, tied to scroll progress ──
+      gsap.fromTo(tnoCanWrapRef.current,
+        { y: 75, rotation: 5, opacity: 0, scale: 0.92 },
+        {
+          y: 0, rotation: 0, opacity: 1, scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: tnoRef.current,
+            start: "top 90%",
+            end: "top 15%",
+            scrub: 1.4,
+          },
+        }
+      );
 
       // ── FMAP headline scramble ──
       ScrollTrigger.create({
@@ -220,12 +228,12 @@ export function BeerLineup() {
             <div ref={fmapCanWrapRef}>
               <div ref={fmapParallaxRef} style={{ willChange: "transform" }}>
                 <Image
-                  src="/pilsner_can_alone.png"
+                  src="/farmer-market-can.png"
                   alt="Farmers Market After Party Pilsner"
                   width={1536}
                   height={1024}
                   sizes="(max-width: 768px) 135vw, 55vw"
-                  className="h-[90vw] w-auto md:h-[82vh] float-can"
+                  className="h-[90vw] w-auto md:h-[82vh]"
                 />
               </div>
             </div>
@@ -237,7 +245,7 @@ export function BeerLineup() {
             <div className="reveal flex items-center gap-4 mb-10">
               <span style={{ fontFamily: "var(--font-display)", fontSize: "0.8rem", letterSpacing: "0.4em", color: "var(--craft-amber)" }}>01</span>
               <div className="w-8 h-px" style={{ background: "var(--craft-amber)" }} aria-hidden="true" />
-              <span className="text-xs tracking-[0.4em] uppercase" style={{ color: "var(--craft-muted)" }}>Pilsner · 5.0% ABV</span>
+              <span className="text-[13px] tracking-[0.4em] uppercase" style={{ color: "var(--craft-muted)" }}>Pilsner · 5.0% ABV</span>
             </div>
 
             <h2
@@ -344,7 +352,7 @@ export function BeerLineup() {
             <div className="reveal flex items-center gap-4 mb-10">
               <span style={{ fontFamily: "var(--font-display)", fontSize: "0.8rem", letterSpacing: "0.4em", color: "var(--craft-orange)" }}>02</span>
               <div className="w-8 h-px" style={{ background: "var(--craft-orange)" }} aria-hidden="true" />
-              <span className="text-xs tracking-[0.4em] uppercase whitespace-nowrap" style={{ color: "var(--craft-muted)" }}>Hazy IPA · 6.2% ABV</span>
+              <span className="text-[13px] tracking-[0.4em] uppercase whitespace-nowrap" style={{ color: "var(--craft-muted)" }}>Hazy IPA · 6.2% ABV</span>
             </div>
 
             <h2
@@ -404,12 +412,12 @@ export function BeerLineup() {
             <div ref={tnoCanWrapRef}>
               <div ref={tnoParallaxRef} style={{ willChange: "transform" }}>
                 <Image
-                  src="/ipa_can_alone.png"
+                  src="/troy-night-can.png"
                   alt="Troy Night Out Hazy IPA"
                   width={800}
                   height={1200}
                   sizes="(max-width: 768px) 60vw, 55vw"
-                  className="h-[90vw] w-auto md:h-[82vh] float-can-delayed"
+                  className="h-[90vw] w-auto md:h-[82vh]"
                 />
               </div>
             </div>

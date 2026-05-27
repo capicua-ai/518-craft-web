@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { startNeonFlicker } from "@/lib/neon-flicker";
 
 export function FooterCta() {
-  const ref      = useRef<HTMLElement>(null);
-  const drinkRef = useRef<HTMLSpanElement>(null);
-  const stayRef  = useRef<HTMLSpanElement>(null);
+  const ref         = useRef<HTMLElement>(null);
+  const drinkRef    = useRef<HTMLSpanElement>(null);
+  const stayRef     = useRef<HTMLSpanElement>(null);
+  const neonWrapRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const els = ref.current?.querySelectorAll(".reveal, .reveal-blur, .reveal-stamp, .reveal-instant, .reveal-glow-build, .reveal-left, .reveal-right") ?? [];
@@ -31,6 +33,8 @@ export function FooterCta() {
       return;
     }
 
+    let stopFlicker = () => {};
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: ref.current,
@@ -42,11 +46,19 @@ export function FooterCta() {
             { filter: "blur(20px)", opacity: 0 },
             { filter: "blur(0px)", opacity: 1, duration: 1.2, ease: "power2.out", stagger: 0.2 }
           );
+          // Start flicker after reveal — minimum 3.5s delay inside startNeonFlicker
+          // ensures first event fires well after the 1.2s reveal animation
+          if (neonWrapRef.current) {
+            stopFlicker = startNeonFlicker(neonWrapRef.current, 1.5);
+          }
         },
       });
     }, ref);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      stopFlicker();
+    };
   }, []);
 
   return (
@@ -94,8 +106,8 @@ export function FooterCta() {
             aria-hidden="true"
           />
           <span
-            className="text-[11px] uppercase"
-            style={{ color: "var(--craft-muted)", letterSpacing: "var(--track-label)" }}
+            className="text-[13px] tracking-[0.4em] uppercase"
+            style={{ color: "var(--craft-muted)" }}
           >
             518 · Troy, NY · Collar City
           </span>
@@ -106,7 +118,7 @@ export function FooterCta() {
           />
         </div>
 
-        {/* Headline — "STAY OUT LATE." is the one uncontained glowing element */}
+        {/* Headline — "STAY OUT LATE." carries the neon SVG stroke effect */}
         <h2
           className="leading-[0.88] mb-12"
           style={{
@@ -117,7 +129,31 @@ export function FooterCta() {
           }}
         >
           <span ref={drinkRef} style={{ display: "block", opacity: 0 }}>DRINK LOCAL.</span>
-          <span ref={stayRef} className="glow-text" style={{ display: "block", color: "var(--craft-orange)", opacity: 0 }}>STAY OUT LATE.</span>
+          {/* neon-troy-wrap: GSAP flicker via startNeonFlicker + drop-shadow glow filter */}
+          <span className="neon-troy-wrap" ref={neonWrapRef}>
+            <span
+              ref={stayRef}
+              style={{ display: "block", opacity: 0, position: "relative", height: "0.88em" }}
+            >
+              <svg
+                aria-hidden="true"
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", overflow: "visible" }}
+              >
+                <text
+                  x="50%"
+                  y="85%"
+                  textAnchor="middle"
+                  fill="none"
+                  stroke="#F5630A"
+                  strokeWidth="2"
+                  style={{ fontFamily: "var(--font-display)", fontSize: "1em", letterSpacing: "-0.02em" }}
+                >
+                  STAY OUT LATE.
+                </text>
+              </svg>
+              <span className="sr-only">STAY OUT LATE.</span>
+            </span>
+          </span>
         </h2>
 
         {/* Sub */}

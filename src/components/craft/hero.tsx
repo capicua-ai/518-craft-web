@@ -4,13 +4,22 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Logo } from "@/components/craft/logo";
 import { gsap } from "@/lib/gsap";
+import { startNeonFlicker } from "@/lib/neon-flicker";
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const bgRef      = useRef<HTMLDivElement>(null);
-  const craftedRef = useRef<HTMLSpanElement>(null);
-  const forTroyRef = useRef<HTMLSpanElement>(null);
-  const nightsRef  = useRef<HTMLSpanElement>(null);
+  const sectionRef  = useRef<HTMLElement>(null);
+  const bgRef       = useRef<HTMLDivElement>(null);
+  const craftedRef  = useRef<HTMLSpanElement>(null);
+  const forTroyRef  = useRef<HTMLSpanElement>(null);
+  const nightsRef   = useRef<HTMLSpanElement>(null);
+  const neonWrapRef = useRef<HTMLSpanElement>(null);
+
+  // Lock hero height to initial viewport height so resize never distorts the image
+  useEffect(() => {
+    if (sectionRef.current) {
+      sectionRef.current.style.height = `${window.innerHeight}px`;
+    }
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -41,14 +50,22 @@ export function Hero() {
       );
     }, sectionRef);
 
-    return () => ctx.revert();
+    // ── Neon flicker — random, organic, GSAP-driven ──
+    const stopFlicker = neonWrapRef.current
+      ? startNeonFlicker(neonWrapRef.current)
+      : () => {};
+
+    return () => {
+      ctx.revert();
+      stopFlicker();
+    };
   }, []);
 
   return (
     <section
       ref={sectionRef}
       className="relative overflow-hidden"
-      style={{ background: "var(--craft-black)", minHeight: "100svh" }}
+      style={{ background: "var(--craft-black)", height: "100svh" }}
     >
       {/* ── Hero photo — full bleed background with parallax ── */}
       <div
@@ -73,15 +90,15 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background: [
-            "linear-gradient(to right, rgba(13,10,7,0.97) 0%, rgba(13,10,7,0.90) 28%, rgba(13,10,7,0.55) 52%, rgba(13,10,7,0.18) 70%, rgba(13,10,7,0.05) 100%)",
-            "linear-gradient(to top, rgba(13,10,7,0.95) 0%, rgba(13,10,7,0.6) 28%, transparent 50%)",
+            "linear-gradient(to right, rgba(13,10,7,0.97) 0%, rgba(13,10,7,0.88) 22%, rgba(13,10,7,0.38) 40%, rgba(13,10,7,0.05) 56%, rgba(13,10,7,0.00) 100%)",
+            "linear-gradient(to top, rgba(13,10,7,0.75) 0%, rgba(13,10,7,0.35) 25%, transparent 50%)",
             "linear-gradient(to bottom, rgba(13,10,7,0.75) 0%, transparent 22%)",
           ].join(", "),
         }}
       />
 
       {/* ── Main layout ── */}
-      <div className="relative flex" style={{ minHeight: "100svh" }}>
+      <div className="relative flex" style={{ height: "100%" }}>
 
         {/* TEXT COLUMN */}
         <div
@@ -91,7 +108,7 @@ export function Hero() {
           {/* Eyebrow — desktop: floats at top via justify-between */}
           <div className="hero-blur-in hero-blur-d5 hidden md:flex items-center gap-4">
             <div className="w-6 h-px" style={{ background: "var(--craft-orange)" }} aria-hidden="true" />
-            <p className="text-[11px] tracking-[0.45em] uppercase" style={{ color: "var(--craft-muted)" }}>
+            <p className="text-[13px] tracking-[0.4em] uppercase" style={{ color: "var(--craft-muted)" }}>
               Troy · New York · 518
             </p>
           </div>
@@ -101,12 +118,12 @@ export function Hero() {
             {/* Eyebrow — mobile: sits just above headline */}
             <div className="hero-blur-in hero-blur-d5 flex md:hidden items-center gap-4 mb-6">
               <div className="w-6 h-px" style={{ background: "var(--craft-orange)" }} aria-hidden="true" />
-              <p className="text-[11px] tracking-[0.45em] uppercase" style={{ color: "var(--craft-muted)" }}>
+              <p className="text-[13px] tracking-[0.4em] uppercase" style={{ color: "var(--craft-muted)" }}>
                 Troy · New York · 518
               </p>
             </div>
 
-            <p className="hero-blur-in hero-blur-d5 text-[11px] tracking-[0.4em] uppercase mb-5" style={{ color: "var(--craft-orange)" }}>
+            <p className="hero-blur-in hero-blur-d5 text-[13px] tracking-[0.4em] uppercase mb-5" style={{ color: "var(--craft-orange)" }}>
               Independent Craft Brewery
             </p>
             <h1
@@ -119,7 +136,7 @@ export function Hero() {
               }}
             >
               <span ref={craftedRef} style={{ display: "block", opacity: 0 }}>CRAFTED</span>
-              <span className="neon-troy-wrap">
+              <span className="neon-troy-wrap" ref={neonWrapRef}>
                 {/* height:"0.88em" anchors the line height to match CRAFTED / NIGHTS. exactly */}
                 <span ref={forTroyRef} style={{ display: "block", opacity: 0, position: "relative", height: "0.88em" }}>
                   <svg
@@ -142,13 +159,6 @@ export function Hero() {
               </span>
               <span ref={nightsRef}  style={{ display: "block", opacity: 0 }}>NIGHTS.</span>
             </h1>
-
-            <p
-              className="hero-blur-in hero-blur-d4 mt-8 leading-relaxed max-w-xs"
-              style={{ color: "var(--craft-muted)", fontSize: "1rem" }}
-            >
-              Brewed for Troy&apos;s streets and its people.
-            </p>
 
             <div className="hero-blur-in hero-blur-d6 flex flex-wrap items-center gap-4 mt-10">
               <a href="#beers" className="craft-cta">Explore the Beers</a>
