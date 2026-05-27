@@ -23,11 +23,13 @@ export const metadata: Metadata = {
     siteName: "518 Craft Brewing",
     locale: "en_US",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "518 Craft — Troy Night Out & Farmers Market After Party" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "518 Craft — Brewed in Troy, NY",
     description: "Small batch craft beer from Troy, New York. Think NY Drink NY.",
+    images: ["/og-image.png"],
   },
 };
 

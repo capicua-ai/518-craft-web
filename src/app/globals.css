@@ -423,67 +423,30 @@
 .bp-btn-secondary { background: transparent; border: 1.5px solid rgba(126,200,227,0.30); color: var(--bp-cyan); border-radius: 4px; }
 
 /* ── Neon sign — FOR TROY ────────────────────────────────────────────── */
-/* Animates only text-shadow — no conflict with GSAP opacity/filter       */
+/* Glow = SVG feGaussianBlur filter in hero.tsx (constrains to stroke)    */
+/* Flicker = opacity on .neon-troy-wrap — GSAP owns inner span only       */
 @keyframes neon-sign-flicker {
-  /* Steady glow for most of the cycle */
-  0%, 86% {
-    text-shadow:
-      0 0 4px  rgba(255, 200, 140, 0.80),
-      0 0 10px rgba(245, 125,  35, 0.95),
-      0 0 20px rgba(230,  95,  15, 0.85),
-      0 0 42px rgba(210,  75,  10, 0.60),
-      0 0 78px rgba(190,  60,   8, 0.40),
-      0 0 120px rgba(160,  45,   5, 0.22);
-  }
-  /* First flicker — drops to near-off */
-  87% {
-    text-shadow:
-      0 0 3px  rgba(255, 200, 140, 0.18),
-      0 0 6px  rgba(245, 125,  35, 0.20);
-  }
-  /* Briefly recovers */
-  87.6% {
-    text-shadow:
-      0 0 4px  rgba(255, 200, 140, 0.80),
-      0 0 10px rgba(245, 125,  35, 0.95),
-      0 0 20px rgba(230,  95,  15, 0.85),
-      0 0 42px rgba(210,  75,  10, 0.60),
-      0 0 78px rgba(190,  60,   8, 0.40),
-      0 0 120px rgba(160,  45,   5, 0.22);
-  }
-  /* Second shorter flicker */
-  88.4% {
-    text-shadow:
-      0 0 3px  rgba(255, 200, 140, 0.30),
-      0 0 7px  rgba(245, 125,  35, 0.30);
-  }
-  /* Back to full glow */
-  89%, 100% {
-    text-shadow:
-      0 0 4px  rgba(255, 200, 140, 0.80),
-      0 0 10px rgba(245, 125,  35, 0.95),
-      0 0 20px rgba(230,  95,  15, 0.85),
-      0 0 42px rgba(210,  75,  10, 0.60),
-      0 0 78px rgba(190,  60,   8, 0.40),
-      0 0 120px rgba(160,  45,   5, 0.22);
-  }
+  /* Sign turns on → immediate flicker → steady for the rest of the cycle */
+  0%        { opacity: 1; }
+  6%        { opacity: 0.12; }   /* first drop */
+  8%        { opacity: 1; }      /* brief recovery */
+  10%       { opacity: 0.22; }   /* second drop */
+  12%, 100% { opacity: 1; }      /* steady glow */
 }
 
-.neon-for-troy {
-  /* Brighter base color — the lit tube itself */
-  color: #F5630A;
-  text-shadow:
-    0 0 4px  rgba(255, 200, 140, 0.80),
-    0 0 10px rgba(245, 125,  35, 0.95),
-    0 0 20px rgba(230,  95,  15, 0.85),
-    0 0 42px rgba(210,  75,  10, 0.60),
-    0 0 78px rgba(190,  60,   8, 0.40),
-    0 0 120px rgba(160,  45,   5, 0.22);
-  animation: neon-sign-flicker 6s ease-in-out infinite;
+.neon-troy-wrap {
+  display: block;
+  filter:
+    drop-shadow(0 0 2px  rgba(255, 220, 160, 0.95))
+    drop-shadow(0 0 8px  rgba(245, 120,  30, 0.85))
+    drop-shadow(0 0 22px rgba(200,  75,  15, 0.58))
+    drop-shadow(0 0 45px rgba(165,  55,  10, 0.28));
+  /* delay 2s: GSAP finishes revealing the text (~1.8s) before the flicker fires */
+  animation: neon-sign-flicker 6s ease-in-out 2s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .neon-for-troy { animation: none; }
+  .neon-troy-wrap { animation: none; }
 }
 
 @layer base {

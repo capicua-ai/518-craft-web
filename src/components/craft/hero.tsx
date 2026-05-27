@@ -118,7 +118,27 @@ export function Hero() {
               }}
             >
               <span ref={craftedRef} style={{ display: "block", opacity: 0 }}>CRAFTED</span>
-              <span ref={forTroyRef} className="neon-for-troy" style={{ display: "block", opacity: 0 }}>FOR TROY</span>
+              <span className="neon-troy-wrap">
+                {/* height:"0.88em" anchors the line height to match CRAFTED / NIGHTS. exactly */}
+                <span ref={forTroyRef} style={{ display: "block", opacity: 0, position: "relative", height: "0.88em" }}>
+                  <svg
+                    aria-hidden="true"
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", overflow: "visible" }}
+                  >
+                    <text
+                      x="0"
+                      y="85%"
+                      fill="none"
+                      stroke="#F5630A"
+                      strokeWidth="2"
+                      style={{ fontFamily: "var(--font-display)", fontSize: "1em", letterSpacing: "-0.02em" }}
+                    >
+                      FOR TROY
+                    </text>
+                  </svg>
+                  <span className="sr-only">FOR TROY</span>
+                </span>
+              </span>
               <span ref={nightsRef}  style={{ display: "block", opacity: 0 }}>NIGHTS.</span>
             </h1>
 
