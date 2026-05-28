@@ -31,7 +31,7 @@ export function Footer() {
             color="var(--craft-cream)"
             aria-hidden={true}
           />
-          <p className="text-craft-muted text-xs tracking-[0.35em] uppercase">
+          <p className="text-craft-muted text-[13px] tracking-[0.35em] uppercase">
             Independent Brewery
           </p>
         </div>
@@ -60,7 +60,7 @@ export function Footer() {
         {/* Info */}
         <div className="flex flex-col gap-2 md:col-start-3 md:text-right">
           <p className="text-craft-cream text-sm">200 Broadway, Troy, NY 12180</p>
-          <p className="text-craft-muted text-xs tracking-widest uppercase mb-2">
+          <p className="text-craft-muted text-[13px] tracking-[0.4em] uppercase mb-2">
             Tasting Room
           </p>
           <p className="text-craft-muted text-xs tracking-[0.25em] uppercase">Mon–Thu · 4–11pm</p>
@@ -104,10 +104,10 @@ export function Footer() {
           borderTop: "1px solid var(--craft-border)",
         }}
       >
-        <p className="text-craft-muted text-xs tracking-[0.4em] uppercase">
+        <p className="text-craft-muted text-[13px] tracking-[0.4em] uppercase">
           Est. 518 · Collar City · Troy, NY
         </p>
-        <p className="text-craft-muted text-xs tracking-[0.4em] uppercase">
+        <p className="text-craft-muted text-[13px] tracking-[0.4em] uppercase">
           © {new Date().getFullYear()} 518 Craft Brewing. All rights reserved.
         </p>
       </div>

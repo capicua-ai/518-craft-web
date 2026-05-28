@@ -100,7 +100,7 @@ export function Story() {
       {/* Section label — divider extends to viewport edge */}
       <div className="relative z-10 reveal flex items-center gap-5 mb-16">
         <h2
-          className="text-[11px] tracking-[0.4em] uppercase"
+          className="text-[13px] tracking-[0.4em] uppercase"
           style={{ color: "var(--craft-orange)" }}
         >
           The Story
@@ -142,21 +142,21 @@ export function Story() {
               style={{ borderTop: "1px solid var(--craft-border)" }}
             >
               <span
-                className="text-[11px] tracking-[0.35em] uppercase whitespace-nowrap"
+                className="text-[13px] tracking-[0.35em] uppercase whitespace-nowrap"
                 style={{ color: "var(--craft-muted)" }}
               >
                 Troy, NY
               </span>
               <div className="hidden lg:block w-px h-3" style={{ background: "var(--craft-border)" }} aria-hidden="true" />
               <span
-                className="text-[11px] tracking-[0.35em] uppercase whitespace-nowrap"
+                className="text-[13px] tracking-[0.35em] uppercase whitespace-nowrap"
                 style={{ color: "var(--craft-muted)" }}
               >
                 Est. 518
               </span>
               <div className="hidden lg:block w-px h-3" style={{ background: "var(--craft-border)" }} aria-hidden="true" />
               <span
-                className="text-[11px] tracking-[0.35em] uppercase whitespace-nowrap"
+                className="text-[13px] tracking-[0.35em] uppercase whitespace-nowrap"
                 style={{ color: "var(--craft-muted)" }}
               >
                 Ind. Craft

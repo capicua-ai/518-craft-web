@@ -4,8 +4,8 @@ import { Logo } from "@/components/craft/logo";
 import { useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = [
-  { label: "Beers",   href: "#beers"   },
   { label: "Story",   href: "#story"   },
+  { label: "Beers",   href: "#beers"   },
   { label: "Find Us", href: "#find-us" },
 ];
 
@@ -133,8 +133,10 @@ export function Nav() {
                 key={label}
                 href={href}
                 aria-current={isActive ? "true" : undefined}
-                className="text-xs tracking-[0.35em] uppercase transition-colors duration-200 hover:text-craft-cream"
-                style={{ color: isActive ? "var(--craft-cream)" : "var(--craft-muted)" }}
+                className="nav-link text-[12.5px] tracking-[0.3em] uppercase"
+                style={{
+                  color: isActive ? "var(--craft-cream)" : "rgba(242,232,213,0.62)",
+                }}
               >
                 {label}
               </a>

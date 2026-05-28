@@ -50,7 +50,7 @@ export function Gallery() {
       {/* Section label — slides in from left */}
       <div ref={labelRef} className="reveal-left flex items-center gap-5 mb-16">
         <span
-          className="text-[10px] tracking-[0.45em] uppercase"
+          className="text-[13px] tracking-[0.4em] uppercase"
           style={{ color: "var(--craft-orange)" }}
         >
           The Label
@@ -93,7 +93,7 @@ export function Gallery() {
           />
           <div className="absolute bottom-6 left-6">
             <p
-              className="text-[10px] tracking-[0.45em] uppercase mb-1"
+              className="text-[13px] tracking-[0.4em] uppercase mb-1"
               style={{ color: "rgba(200,120,20,0.9)" }}
             >
               Pilsner · 5.0%
@@ -167,7 +167,7 @@ export function Gallery() {
           />
           <div className="absolute bottom-6 left-6">
             <p
-              className="text-[10px] tracking-[0.45em] uppercase mb-1"
+              className="text-[13px] tracking-[0.4em] uppercase mb-1"
               style={{ color: "rgba(196,83,26,0.9)" }}
             >
               Hazy IPA · 6.2%
@@ -203,7 +203,7 @@ export function Gallery() {
               aria-hidden="true"
             />
             <p
-              className="text-[10px] tracking-[0.5em] uppercase mb-3"
+              className="text-[13px] tracking-[0.4em] uppercase mb-3"
               style={{ color: "var(--craft-muted)" }}
             >
               Troy, NY · 518
@@ -243,7 +243,7 @@ export function Gallery() {
             aria-hidden="true"
           />
           <p
-            className="relative z-10 text-[10px] tracking-[0.45em] uppercase"
+            className="relative z-10 text-[13px] tracking-[0.4em] uppercase"
             style={{ color: "rgba(237,229,208,0.55)" }}
           >
             Brewed in
@@ -289,7 +289,7 @@ export function Gallery() {
           </p>
           <div>
             <p
-              className="text-[10px] tracking-[0.45em] uppercase mb-1"
+              className="text-[13px] tracking-[0.4em] uppercase mb-1"
               style={{ color: "var(--craft-muted)" }}
             >
               Troy, NY

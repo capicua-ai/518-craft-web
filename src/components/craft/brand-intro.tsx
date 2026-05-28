@@ -35,7 +35,7 @@ export function BrandIntro() {
         {/* Eyebrow */}
         <div className="reveal-left flex items-center gap-5 mb-8">
           <div className="w-8 h-px" style={{ background: "var(--craft-orange)" }} aria-hidden="true" />
-          <span className="text-[10px] tracking-[0.5em] uppercase" style={{ color: "var(--craft-orange)" }}>
+          <span className="text-[13px] tracking-[0.4em] uppercase" style={{ color: "var(--craft-orange)" }}>
             518 · Troy, NY
           </span>
         </div>
@@ -75,11 +75,11 @@ export function BrandIntro() {
           className="reveal reveal-d3 flex items-center gap-8 mt-10 pt-8"
           style={{ borderTop: "1px solid var(--craft-border)" }}
         >
-          <span className="text-[10px] tracking-[0.5em] uppercase" style={{ color: "var(--craft-muted)" }}>
+          <span className="text-[13px] tracking-[0.4em] uppercase" style={{ color: "var(--craft-muted)" }}>
             Small batch · Independent
           </span>
           <div className="flex-1 h-px" style={{ background: "var(--craft-border)" }} aria-hidden="true" />
-          <span className="text-[10px] tracking-[0.5em] uppercase" style={{ color: "var(--craft-muted)" }}>
+          <span className="text-[13px] tracking-[0.4em] uppercase" style={{ color: "var(--craft-muted)" }}>
             Pilsner · Hazy IPA
           </span>
         </div>

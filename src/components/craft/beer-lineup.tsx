@@ -84,34 +84,28 @@ export function BeerLineup() {
     }
 
     const ctx = gsap.context(() => {
-      // ── FMAP can — scrubbed entrance, tied to scroll progress ──
+      // ── FMAP can — opacity: one-shot on enter / position: scrubbed ──
       gsap.fromTo(fmapCanWrapRef.current,
-        { y: 75, rotation: -5, opacity: 0, scale: 0.92 },
-        {
-          y: 0, rotation: 0, opacity: 1, scale: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: fmapRef.current,
-            start: "top 90%",
-            end: "top 15%",
-            scrub: 1.4,
-          },
-        }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.9, ease: "power2.out",
+          scrollTrigger: { trigger: fmapRef.current, start: "top 85%", once: true } }
+      );
+      gsap.fromTo(fmapCanWrapRef.current,
+        { y: 70, rotation: -5, scale: 0.92 },
+        { y: 0, rotation: 0, scale: 1, ease: "none",
+          scrollTrigger: { trigger: fmapRef.current, start: "top 90%", end: "top 15%", scrub: 1.4 } }
       );
 
-      // ── TNO can — scrubbed entrance, tied to scroll progress ──
+      // ── TNO can — opacity: one-shot on enter / position: scrubbed ──
       gsap.fromTo(tnoCanWrapRef.current,
-        { y: 75, rotation: 5, opacity: 0, scale: 0.92 },
-        {
-          y: 0, rotation: 0, opacity: 1, scale: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: tnoRef.current,
-            start: "top 90%",
-            end: "top 15%",
-            scrub: 1.4,
-          },
-        }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.9, ease: "power2.out",
+          scrollTrigger: { trigger: tnoRef.current, start: "top 85%", once: true } }
+      );
+      gsap.fromTo(tnoCanWrapRef.current,
+        { y: 70, rotation: 5, scale: 0.92 },
+        { y: 0, rotation: 0, scale: 1, ease: "none",
+          scrollTrigger: { trigger: tnoRef.current, start: "top 90%", end: "top 15%", scrub: 1.4 } }
       );
 
       // ── FMAP headline scramble ──
@@ -228,12 +222,12 @@ export function BeerLineup() {
             <div ref={fmapCanWrapRef}>
               <div ref={fmapParallaxRef} style={{ willChange: "transform" }}>
                 <Image
-                  src="/farmer-market-can.png"
+                  src="/FM-can.png"
                   alt="Farmers Market After Party Pilsner"
                   width={1536}
                   height={1024}
                   sizes="(max-width: 768px) 135vw, 55vw"
-                  className="h-[90vw] w-auto md:h-[82vh]"
+                  className="h-[75vw] w-auto md:h-[68vh]"
                 />
               </div>
             </div>
@@ -364,8 +358,8 @@ export function BeerLineup() {
                 color: "var(--craft-cream)",
               }}
             >
-              <span ref={tnoLine1Ref} style={{ display: "block" }}>TROY</span>
-              <span ref={tnoLine2Ref} style={{ display: "block", color: "var(--craft-orange)" }}>NIGHT OUT</span>
+              <span ref={tnoLine1Ref} style={{ display: "block", opacity: 0 }}>TROY</span>
+              <span ref={tnoLine2Ref} style={{ display: "block", opacity: 0, color: "var(--craft-orange)" }}>NIGHT OUT</span>
             </h2>
 
             <p className="reveal reveal-d2 leading-relaxed mb-7 max-w-sm" style={{ color: "var(--craft-muted)", fontSize: "1rem" }}>
@@ -412,12 +406,12 @@ export function BeerLineup() {
             <div ref={tnoCanWrapRef}>
               <div ref={tnoParallaxRef} style={{ willChange: "transform" }}>
                 <Image
-                  src="/troy-night-can.png"
+                  src="/TNO-can.png"
                   alt="Troy Night Out Hazy IPA"
                   width={800}
                   height={1200}
                   sizes="(max-width: 768px) 60vw, 55vw"
-                  className="h-[90vw] w-auto md:h-[82vh]"
+                  className="h-[75vw] w-auto md:h-[68vh]"
                 />
               </div>
             </div>

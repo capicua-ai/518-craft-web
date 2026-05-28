@@ -103,7 +103,7 @@ export function FindUs() {
       {/* Section label */}
       <div className="reveal flex items-center gap-5 mb-16">
         <span
-          className="text-[11px] tracking-[0.4em] uppercase"
+          className="text-[13px] tracking-[0.4em] uppercase"
           style={{ color: "var(--craft-orange)" }}
         >
           Find Us
@@ -196,7 +196,7 @@ export function FindUs() {
                       style={{ color: "var(--craft-muted)" }}
                     />
                     <p
-                      className="text-xs tracking-widest uppercase"
+                      className="text-[13px] tracking-[0.4em] uppercase"
                       style={{ color: "var(--craft-muted)" }}
                     >
                       {sub}
@@ -204,7 +204,7 @@ export function FindUs() {
                   </div>
                 ) : (
                   <p
-                    className="text-xs tracking-widest uppercase"
+                    className="text-[13px] tracking-[0.4em] uppercase"
                     style={{ color: "var(--craft-muted)" }}
                   >
                     {sub}
@@ -235,7 +235,7 @@ export function FindUs() {
                     style={{ color: "var(--craft-muted)" }}
                   />
                   <p
-                    className="text-xs tracking-[0.4em] uppercase"
+                    className="text-[13px] tracking-[0.4em] uppercase"
                     style={{ color: "var(--craft-muted)" }}
                   >
                     Hours
